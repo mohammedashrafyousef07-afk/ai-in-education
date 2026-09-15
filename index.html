@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artificial Intelligence in Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon:#7a1228;
+    --dark:#5d021c;
+    --bg:#ffffff;
+    --alt:#fbf4f5;
+    --text:#2b2b2b;
+    --muted:#666666;
+    --border:#e7d9dc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',Arial,sans-serif;color:var(--text);line-height:1.7;background:var(--bg)}
+  img{max-width:100%;display:block}
+  a{color:var(--maroon)}
+  .container{max-width:1000px;margin:0 auto;padding:0 18px}
+
+  /* header */
+  header.top{background:var(--maroon);color:#fff;padding:24px 0}
+  header.top .container{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  header.top .logo{height:62px;background:#fff;padding:6px 12px;border-radius:8px}
+  header.top h1{font-size:1.7rem;font-weight:700;line-height:1.25}
+  header.top p{font-size:.95rem;opacity:.9}
+
+  /* nav */
+  nav.menu{background:var(--dark);position:sticky;top:0;z-index:10}
+  nav.menu .container{display:flex;flex-wrap:wrap;justify-content:center}
+  nav.menu a{color:#fff;text-decoration:none;padding:12px 14px;font-size:.9rem;font-weight:500}
+  nav.menu a:hover{background:rgba(255,255,255,.15)}
+
+  section{padding:44px 0}
+  section.alt{background:var(--alt)}
+  h2{color:var(--maroon);font-size:1.55rem}
+  .line{width:58px;height:4px;background:var(--maroon);border-radius:2px;margin:8px 0 18px}
+  .lead{color:var(--muted);margin-bottom:22px;max-width:760px}
+
+  .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:26px;align-items:center}
+  .two img{border:1px solid var(--border);border-radius:10px}
+
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+  .card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px}
+  .card .emoji{font-size:1.9rem}
+  .card h3{color:var(--maroon);margin:8px 0 5px;font-size:1.08rem}
+  .card p{font-size:.93rem;color:#444}
+
+  .stats{display:flex;flex-wrap:wrap;gap:16px}
+  .stat{flex:1;min-width:150px;background:var(--maroon);color:#fff;border-radius:10px;padding:20px;text-align:center}
+  .stat b{font-size:2rem;display:block;line-height:1}
+  .stat span{font-size:.85rem;opacity:.92}
+
+  .poster{text-align:center}
+  .poster img{max-width:430px;width:100%;margin:0 auto;border:1px solid var(--border);border-radius:10px}
+  .btn{display:inline-block;background:var(--maroon);color:#fff;text-decoration:none;padding:10px 20px;border-radius:6px;margin-top:16px;font-weight:500}
+
+  .videos{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .video iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:10px}
+  .video p{font-size:.9rem;color:var(--muted);margin-top:8px}
+
+  .gallery{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .gallery figure{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
+  .gallery img{width:100%;height:150px;object-fit:cover}
+  .gallery figcaption{padding:9px;font-size:.82rem;color:var(--muted);text-align:center}
+
+  ul.links{list-style:none;display:grid;gap:12px}
+  ul.links li{background:#fff;border:1px solid var(--border);border-left:4px solid var(--maroon);border-radius:6px;padding:13px 16px}
+  ul.links a{font-weight:600}
+  ul.links span{display:block;color:var(--muted);font-size:.88rem;margin-top:2px}
+
+  .quiz{background:#fff;border:1px solid var(--border);border-radius:10px;padding:22px;max-width:660px}
+  .q{margin-bottom:18px}
+  .q .qtext{font-weight:600;margin-bottom:8px}
+  .q button{display:block;width:100%;text-align:left;background:#fff;border:1px solid var(--border);border-radius:6px;padding:10px 13px;margin-bottom:7px;cursor:pointer;font:inherit;color:var(--text)}
+  .q button:hover{border-color:var(--maroon)}
+  .q button.right{background:#e8f6e8;border-color:#4a9c4f}
+  .q button.wrong{background:#fbe6e6;border-color:#cc3b3b}
+  #score{font-weight:600;color:var(--maroon);margin-top:6px}
+
+  table{width:100%;border-collapse:collapse;background:#fff;font-size:.92rem}
+  th,td{border:1px solid var(--border);padding:10px;text-align:left}
+  th{background:var(--maroon);color:#fff;font-weight:500}
+  td.fill{color:#999;font-style:italic}
+
+  footer{background:var(--maroon);color:#fff;padding:28px 0;margin-top:10px}
+  footer a{color:#fff}
+  footer .refs{font-size:.82rem;opacity:.92;margin-top:12px}
+  footer .refs li{margin-left:18px}
+
+  .quote{background:#fff;border:1px solid var(--border);border-left:5px solid var(--maroon);border-radius:8px;padding:18px 22px;max-width:760px}
+  .quote .ar{font-size:1.55rem;color:var(--maroon);font-weight:600;direction:rtl;line-height:1.9;margin-bottom:6px}
+  .quote small{color:var(--muted);display:block;margin-top:6px}
+  #soundToggle{position:fixed;right:16px;bottom:16px;z-index:60;width:48px;height:48px;border-radius:50%;background:var(--maroon);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+  #soundToggle svg{width:22px;height:22px}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top">
+  <div class="container">
+    <img class="logo" src="assets/img/utm-logo.png" alt="Universiti Teknologi Malaysia logo">
+    <div>
+      <h1>Artificial Intelligence in Education</h1>
+      <p>Enhancing teaching and learning experiences</p>
+    </div>
+  </div>
+</header>
+
+<!-- ===== NAV ===== -->
+<nav class="menu">
+  <div class="container">
+    <a href="#islam">Start</a>
+    <a href="#about">About</a>
+    <a href="#poster">Poster</a>
+    <a href="#videos">Videos</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#links">Links</a>
+    <a href="#utm">UTM</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#team">Our Group</a>
+  </div>
+</nav>
+
+<!-- ===== START: KNOWLEDGE IN ISLAM ===== -->
+<section id="islam" class="alt">
+  <div class="container">
+    <h2>It All Begins with One Word: "Read"</h2>
+    <div class="line"></div>
+    <p class="lead">Long before computers or the internet, the very first word revealed in the Qur'an was a simple command: "Read." As Muslim students, that means a lot to us. Learning is not only useful for our lives, it is part of our faith.</p>
+
+    <div class="quote">
+      <p class="ar">اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ</p>
+      <p>"Read, in the name of your Lord who created."</p>
+      <small>Qur'an, Surah Al-&lsquo;Alaq (96:1)</small>
+    </div>
+
+    <div class="grid" style="margin-top:24px">
+      <div class="card"><h3>Learning is a duty</h3><p>The Prophet Muhammad (peace be upon him) taught that seeking knowledge is a duty on every Muslim. So for us, studying is not only about marks, it is something our religion asks of us.</p></div>
+      <div class="card"><h3>Every age has its tools</h3><p>People once learned with a pen and a book. Then came the computer and the internet, and now Artificial Intelligence. The tools keep changing, but the goal of learning stays the same.</p></div>
+      <div class="card"><h3>Honesty above all</h3><p>Islam also asks us to be honest. A good tool should help us truly understand, not cheat, and we should always check that what it tells us is right.</p></div>
+    </div>
+
+    <p style="margin-top:18px">This is where our project starts. The UTM motto, <em>"Kerana Tuhan Untuk Manusia"</em> (For God, For Mankind), carries the same spirit. And one of the newest tools for learning today is Artificial Intelligence — which is what the rest of this website is about.</p>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="container">
+    <h2>What is AI in Education?</h2>
+    <div class="line"></div>
+    <div class="two">
+      <div>
+        <p class="lead">So what is AI exactly? Artificial Intelligence (AI) is a computer program that can learn from data and make its own decisions, a bit like a human mind. In school, it is used to help both students and teachers — giving extra practice, answering questions at any hour, or marking a quiz in seconds.</p>
+        <p>We picked this topic because AI is already part of student life. A lot of us use tools like ChatGPT and Khanmigo to study every day. We wanted to find out how much they really help, and what problems they can bring too.</p>
+      </div>
+      <img src="assets/img/about.jpg" alt="A robot that represents artificial intelligence">
+    </div>
+
+    <div class="grid" style="margin-top:30px">
+      <div class="card"><h3>Lessons that fit the student</h3><p>AI can change a lesson to match each student. Someone who is struggling gets more practice, while someone who finds it easy moves on to harder questions.</p></div>
+      <div class="card"><h3>An AI tutor</h3><p>A tool like Khanmigo can answer questions at any time, even late at night. Instead of just giving the answer, it asks the student questions so they work it out themselves.</p></div>
+      <div class="card"><h3>Less work for teachers</h3><p>Marking and planning take up a big part of a teacher's day. AI can take over some of that, which leaves more time for the students.</p></div>
+      <div class="card"><h3>Help for everyone</h3><p>Tools like translation and text-to-speech make a lesson easier to follow for students who speak another language or who learn in a different way.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="alt">
+  <div class="container">
+    <h2>Some Numbers (2024–2025)</h2>
+    <div class="line"></div>
+    <p class="lead">In a single year, AI use in schools shot up. Here are a few numbers from 2024 and 2025.</p>
+    <div class="stats">
+      <div class="stat"><b>61%</b><span>of teachers used AI in 2025<br>(only 32% in 2024)</span></div>
+      <div class="stat"><b>92%</b><span>of students used AI in 2025<br>(66% in 2024)</span></div>
+      <div class="stat"><b>$32B</b><span>size of the AI education<br>market by 2030</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POSTER ===== -->
+<section id="poster">
+  <div class="container poster">
+    <h2>Our Poster</h2>
+    <div class="line" style="margin-left:auto;margin-right:auto"></div>
+    <p class="lead" style="margin-left:auto;margin-right:auto">We made a poster that puts the whole idea of our topic on one page.</p>
+    <img src="assets/img/poster.png" alt="Project poster about AI in Education">
+    <br>
+    <a class="btn" href="assets/img/poster.png" target="_blank">View full size</a>
+  </div>
+</section>
+
+<!-- ===== VIDEOS ===== -->
+<section id="videos" class="alt">
+  <div class="container">
+    <h2>Videos</h2>
+    <div class="line"></div>
+    <p class="lead">Three short videos that look at AI in education from different sides — the chances, the worries, and how it is already used in real classrooms.</p>
+    <div class="videos">
+      <div class="video">
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/4D1oQQ22NAQ" title="AI in Education: Opportunities, Challenges, and Future Perspectives" allowfullscreen></iframe>
+        <p>A clear overview of the chances and the challenges of using AI in education.</p>
+      </div>
+      <div class="video">
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/hJP5GqnTrNo" title="How AI Could Save (Not Destroy) Education — Sal Khan, TED" allowfullscreen></iframe>
+        <p>Sal Khan explains how AI could make learning better instead of worse.</p>
+      </div>
+      <div class="video">
+        <iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/JMLsHI8aV0g" title="How China Is Using Artificial Intelligence in Classrooms — WSJ" allowfullscreen></iframe>
+        <p>A look at how schools in China are already using AI in real classrooms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery">
+  <div class="container">
+    <h2>Image Gallery</h2>
+    <div class="line"></div>
+    <p class="lead">A few pictures of learning and technology side by side. Click any image to open it bigger.</p>
+    <div class="gallery">
+      <figure><a href="assets/img/g1.jpg" target="_blank"><img src="assets/img/g1.jpg" alt="Student studying on a laptop"></a><figcaption>A student learning on a laptop</figcaption></figure>
+      <figure><a href="assets/img/g2.jpg" target="_blank"><img src="assets/img/g2.jpg" alt="Students using a VR headset in a classroom"></a><figcaption>Trying VR technology in class</figcaption></figure>
+      <figure><a href="assets/img/g3.jpg" target="_blank"><img src="assets/img/g3.jpg" alt="Code on a screen"></a><figcaption>The code behind AI tools</figcaption></figure>
+      <figure><a href="assets/img/g4.jpg" target="_blank"><img src="assets/img/g4.jpg" alt="Students in a classroom"></a><figcaption>Students learning together</figcaption></figure>
+      <figure><a href="assets/img/g5.jpg" target="_blank"><img src="assets/img/g5.jpg" alt="A boy using an AI assistant on a laptop"></a><figcaption>Studying with an AI assistant</figcaption></figure>
+      <figure><a href="assets/img/g6.jpg" target="_blank"><img src="assets/img/g6.jpg" alt="Online learning on a tablet"></a><figcaption>Learning online on any device</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LINKS ===== -->
+<section id="links" class="alt">
+  <div class="container">
+    <h2>Useful Links</h2>
+    <div class="line"></div>
+    <p class="lead">Want to read more? These websites are a good place to start.</p>
+    <ul class="links">
+      <li><a href="https://www.unesco.org/en/digital-education/artificial-intelligence" target="_blank">UNESCO – AI in Education</a><span>What the United Nations says about using AI fairly in schools.</span></li>
+      <li><a href="https://www.khanmigo.ai/" target="_blank">Khanmigo by Khan Academy</a><span>A real AI tutor you can try yourself.</span></li>
+      <li><a href="https://www.grandviewresearch.com/industry-analysis/artificial-intelligence-ai-education-market-report" target="_blank">AI in Education Market Report</a><span>Where the numbers in our project come from.</span></li>
+      <li><a href="https://www.ted.com/talks/sal_khan_how_ai_could_save_not_destroy_education" target="_blank">Sal Khan's TED Talk</a><span>The full talk about AI and learning, with a transcript.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== UTM ===== -->
+<section id="utm">
+  <div class="container">
+    <h2>AI in Education at UTM</h2>
+    <div class="line"></div>
+    <p class="lead">This topic is close to home for us too. Our own university, Universiti Teknologi Malaysia (UTM), is already working with AI in education.</p>
+    <div class="grid">
+      <div class="card"><h3>Faculty of Artificial Intelligence</h3><p>UTM has its own faculty just for AI, where students learn how to build the kind of tools we talk about in this project.</p></div>
+      <div class="card"><h3>UTM CDex</h3><p>The Centre for Advancement in Digital and Flexible Education helps lecturers teach online and use technology in their classes.</p></div>
+      <div class="card"><h3>Online learning</h3><p>Through its open and distance learning programmes, UTM lets students study from almost anywhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section id="quiz" class="alt">
+  <div class="container">
+    <h2>Quick Quiz</h2>
+    <div class="line"></div>
+    <p class="lead">A few quick questions to see what you remember. Just click an answer.</p>
+    <div class="quiz">
+      <div id="quizBox"></div>
+      <p id="score">Score: 0 / 4</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section id="team">
+  <div class="container">
+    <h2>Our Group</h2>
+    <div class="line"></div>
+    <p class="lead">Our group members for this ICT project:</p>
+    <table>
+      <tr><th>Role</th><th>Name</th></tr>
+      <tr><td>Leader</td><td>Mohammed A. K. Yousef</td></tr>
+      <tr><td>Member</td><td>Mohammad Abdulwahab</td></tr>
+      <tr><td>Member</td><td>Mohamed Gehad</td></tr>
+      <tr><td>Member</td><td>Abdalah Khalil</td></tr>
+      <tr><td>Member</td><td>Zakarya Esmail Saif Abdulkhaleq</td></tr>
+      <tr><td>Member</td><td>Ahmed Adel Abdullah Mahmoud</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <p>Artificial Intelligence in Education — ICT group project · Universiti Teknologi Malaysia.</p>
+    <ul class="refs">
+      <li>UNESCO – Artificial Intelligence in Education (unesco.org)</li>
+      <li>Grand View Research – AI in Education Market Report</li>
+      <li>Sal Khan – TED Talk on AI and education</li>
+      <li>Photos from Unsplash · Videos from YouTube</li>
+    </ul>
+  </div>
+</footer>
+
+<audio id="nasheed" src="assets/audio/nasheed.mp3" loop preload="auto"></audio>
+<button id="soundToggle" aria-label="Play or pause the nasheed" title="Nasheed"></button>
+
+<script>
+  // simple quiz
+  var QUIZ=[
+    {q:"What is the main role of AI in education?",opts:["To replace teachers","To help students and teachers","To give every answer","To make exams harder"],a:1},
+    {q:"What does \"personalised learning\" mean?",opts:["Everyone does the same lesson","Lessons fit each student's level","Only the teacher chooses","No computers in class"],a:1},
+    {q:"Khanmigo is an example of...",opts:["A video game","An AI tutor","A social media app","A calculator"],a:1},
+    {q:"Which one is a problem of using AI in school?",opts:["Students learn faster","Privacy and unequal access","Teachers save time","Better translation"],a:1}
+  ];
+  var box=document.getElementById('quizBox'), score=0;
+  QUIZ.forEach(function(item,qi){
+    var d=document.createElement('div'); d.className='q';
+    var t=document.createElement('p'); t.className='qtext'; t.textContent=(qi+1)+'. '+item.q; d.appendChild(t);
+    item.opts.forEach(function(o,oi){
+      var b=document.createElement('button'); b.textContent=o;
+      b.onclick=function(){
+        if(d.getAttribute('data-done'))return;
+        d.setAttribute('data-done','1');
+        if(oi===item.a){ b.className='right'; score++; }
+        else{ b.className='wrong'; d.getElementsByTagName('button')[item.a].className='right'; }
+        document.getElementById('score').textContent='Score: '+score+' / '+QUIZ.length;
+      };
+      d.appendChild(b);
+    });
+    box.appendChild(d);
+  });
+
+  // background nasheed (vocal only, no music)
+  var aud=document.getElementById('nasheed'), sbtn=document.getElementById('soundToggle');
+  if(aud && sbtn){
+    var ICON_ON='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>';
+    var ICON_OFF='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6m0-6 6 6"/></svg>';
+    var playing=false;
+    aud.volume=0.5;
+    function icon(){ sbtn.innerHTML = playing ? ICON_ON : ICON_OFF; }
+    function startAudio(){ if(playing) return; var p=aud.play(); if(p && p.then){ p.then(function(){ playing=true; icon(); }).catch(function(){}); } }
+    icon();
+    window.addEventListener('load', startAudio);
+    ['click','scroll','keydown','touchstart'].forEach(function(ev){
+      document.addEventListener(ev, function h(){ startAudio(); document.removeEventListener(ev,h); });
+    });
+    sbtn.onclick=function(e){ e.stopPropagation(); if(playing){ aud.pause(); playing=false; } else { aud.play(); playing=true; } icon(); };
+  }
+</script>
+</body>
+</html>
